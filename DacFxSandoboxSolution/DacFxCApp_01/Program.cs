@@ -1,8 +1,8 @@
-﻿using Microsoft.SqlServer.Dac;
+﻿using DacFxCApp_01.Testers;
+using Microsoft.SqlServer.Dac;
 using Microsoft.SqlServer.Dac.Model;
 using System;
 using System.IO;
-using System.Linq;
 
 namespace DacFxCApp_01
 {
@@ -10,54 +10,45 @@ namespace DacFxCApp_01
     {
         static void Main(string[] args)
         {
-            Tester t = new Tester();
-
-            string filePath = @"C:\Users\XTOKO\Source\Repos\TKostyrkaWSEI\SqlServerDacFx\DacFxSandoboxSolution\DacFxCApp_01\bin\DacPacFiles\ffgxqye5.4fa.dacpac";
-                //t.GenerateDacPac();
-            t.LoadDACToModel(filePath);
+            //Test01();
+            Test02();
 
             Console.WriteLine("-----------");
             Console.ReadKey();
         }
-    }
 
-    class Tester
-    {
-        public string GenerateDacPac()
+        static void Test01()
         {
-            DacServices dacSrv = new DacServices(@"Data Source=.;Integrated Security=SSPI;");
-            string folderPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\DacPacFiles\"));
-            string filePath = Path.Combine(folderPath, Path.GetRandomFileName() + ".dacpac");
+            Tester01 t = new Tester01();
 
-            Directory.CreateDirectory(folderPath);
-            dacSrv.Extract(filePath, "ContosoRetailDW", "AppName", new Version(1, 0));
+            string server = @"Data Source=.;Integrated Security=SSPI;";
+            string database = @"ContosoRetailDW";
+            string filePath = @"C:\Users\XTOKO\Source\Repos\TKostyrkaWSEI\SqlServerDacFx\DacFxSandoboxSolution\DacFxCApp_01\bin\DacPacFiles\dacpac01.dacpac";
 
-            return filePath;
+            DacPackage p = DacPackage.Load(filePath);
+            TSqlModel m = new TSqlModel(filePath);
+
+            string newDacPackPath = t.CreateDacPac(server, database);
+            TSqlModel m1 = t.CreateModelWithDimsOnly(m);
+            PackageMetadata pm1 = new PackageMetadata() { Name = "NewApp", Version = "2.0" };
+
+            DacPackage p1 = DacPackage.Load(newDacPackPath, DacSchemaModelStorageType.Memory, FileAccess.ReadWrite);
+            p1.UpdateModel(m1, pm1);
         }
 
-        public void LoadDACToModel(string filePath)
+        static void Test02()
         {
-            TSqlModel model = new TSqlModel(filePath);
+            Tester02 t = new Tester02();
 
-            var tables = model.GetObjects(DacQueryScopes.Default, Table.TypeClass).ToList();
-            foreach (var t in tables) { Console.WriteLine(t.Name); }
-            Console.WriteLine("----------->\n\n");
+            string folderPath = @"C:\Users\XTOKO\Source\Repos\TKostyrkaWSEI\SqlServerDacFx\DacFxSandoboxSolution\DacFxCApp_01\bin\DacPacFiles\";
+            string file01 = "dacpac00Dims.dacpac";
+            string file02 = "dacpac01.dacpac";
 
-            var t1 = model.GetObjects(Table.TypeClass,
-                                        new ObjectIdentifier("dbo", "DimAccount"),
-                                        DacQueryScopes.Default
-                                        ).FirstOrDefault();
-            foreach (var c in t1.GetReferenced(Table.Columns)) { Console.WriteLine(c.Name); }
-            Console.WriteLine("----------->\n\n");
+            var pk1 = DacPackage.Load(folderPath + file01);
+            var pk2 = DacPackage.Load(folderPath + file02);
 
-            TSqlObject column = t1.GetReferenced(Table.Columns).First(col => col.Name.Parts[2].Equals("AccountName"));
-
-            int columnLength = column.GetProperty<int>(Column.Length);
-            Console.WriteLine("Column c1 has length {0}", columnLength);
-            
-            var dataType = column.GetReferenced(Column.DataType).First().Name;
-            Console.WriteLine("Column c1 is of type '{0}'", dataType);
-            Console.WriteLine("----------->\n\n");
+            string s = t.GenerateCompareScript(pk1, pk2);
+            Console.WriteLine(s);
         }
     }
 }
