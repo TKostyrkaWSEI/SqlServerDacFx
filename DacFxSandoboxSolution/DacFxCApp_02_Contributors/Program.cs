@@ -17,7 +17,7 @@ namespace DacFxCApp_02_Contributors
             DacDeployOptions options = new DacDeployOptions
             {
                 AdditionalDeploymentContributors = "AgileSqlClub.DeploymentFilterContributor",
-                AdditionalDeploymentContributorArguments = "",
+                AdditionalDeploymentContributorArguments = "SqlPackageFilterA=IgnoreSchema(dev01)",
                 ExcludeObjectTypes = new ObjectType[]
                 {
                     ObjectType.StoredProcedures,
