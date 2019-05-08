@@ -6,4 +6,6 @@
   * https://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2016/dn702988(v=sql.130)
   * https://devblogs.microsoft.com/ssdt/dacfx-public-model-tutorial/
   * https://github.com/Microsoft/DACExtensions
-  
+  * https://the.agilesql.club/2015/01/howto-filter-dacpac-deployments/
+  * https://github.com/GoEddie/DeploymentContributorFilterer
+  * https://docs.microsoft.com/en-us/previous-versions/sql/sql-server-data-tools/dn306642(v=vs.103) - WAZNE

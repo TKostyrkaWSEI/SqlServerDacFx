@@ -4,20 +4,20 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>DacFxTest01</Name>
+    <Name>DACContributor_Test01</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{e134d838-d075-44f4-8c7b-2ca0dee80dbb}</ProjectGuid>
+    <ProjectGuid>{9318dbe7-e3b3-4f7b-8f75-523295751c42}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>DacFxTest01</RootNamespace>
-    <AssemblyName>DacFxTest01</AssemblyName>
+    <RootNamespace>DACContributor_Test01</RootNamespace>
+    <AssemblyName>DACContributor_Test01</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <TargetLanguage>CS</TargetLanguage>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <SqlServerVerification>False</SqlServerVerification>
@@ -57,15 +57,20 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="test_schema\" />
-    <Folder Include="test_schema\Tables\" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dev01\" />
+    <Folder Include="dev01\Tables\" />
+    <Folder Include="dev\" />
+    <Folder Include="dev\Tables\" />
     <Folder Include="Security\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="test_schema\Tables\TestTable01.sql" />
-    <Build Include="Security\test_role.sql" />
-    <Build Include="Security\test_schema.sql" />
-    <Build Include="Security\Permissions.sql" />
+    <Build Include="dbo\Tables\CommonTable.sql" />
+    <Build Include="dev01\Tables\Table01.sql" />
+    <Build Include="dev\Tables\Table01.sql" />
+    <Build Include="Security\dev01.sql" />
+    <Build Include="Security\dev.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DacFxTest01.publish.xml" />

@@ -1,11 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DacFxCApp_01", "DacFxCApp_01\DacFxCApp_01.csproj", "{2582AEE3-795A-4E2A-A65C-8BAECB93DEFD}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DacFxTest01", "DacFxTest01\DacFxTest01.sqlproj", "{E134D838-D075-44F4-8C7B-2CA0DEE80DBB}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DACContributor_Test01", "DACContributor_Test01\DACContributor_Test01.sqlproj", "{9318DBE7-E3B3-4F7B-8F75-523295751C42}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DACContributor_Test02", "DACContributor_Test02\DACContributor_Test02.sqlproj", "{C358D46A-4247-4C97-8BF8-5B3C1047696C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DacFxCApp_02_Contributors", "DacFxCApp_02_Contributors\DacFxCApp_02_Contributors.csproj", "{34D7D3F9-5AAA-41D7-952D-AF1AD6F59EF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgileSqlClub.SqlPackageFilter", "AgileSqlClub.SqlPackageFilter\AgileSqlClub.SqlPackageFilter.csproj", "{27B7311A-DD78-48D5-AA5C-BFFCC5CA5FA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +23,26 @@ Global
 		{2582AEE3-795A-4E2A-A65C-8BAECB93DEFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2582AEE3-795A-4E2A-A65C-8BAECB93DEFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2582AEE3-795A-4E2A-A65C-8BAECB93DEFD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E134D838-D075-44F4-8C7B-2CA0DEE80DBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E134D838-D075-44F4-8C7B-2CA0DEE80DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E134D838-D075-44F4-8C7B-2CA0DEE80DBB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{E134D838-D075-44F4-8C7B-2CA0DEE80DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E134D838-D075-44F4-8C7B-2CA0DEE80DBB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E134D838-D075-44F4-8C7B-2CA0DEE80DBB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{9318DBE7-E3B3-4F7B-8F75-523295751C42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9318DBE7-E3B3-4F7B-8F75-523295751C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9318DBE7-E3B3-4F7B-8F75-523295751C42}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9318DBE7-E3B3-4F7B-8F75-523295751C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9318DBE7-E3B3-4F7B-8F75-523295751C42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9318DBE7-E3B3-4F7B-8F75-523295751C42}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C358D46A-4247-4C97-8BF8-5B3C1047696C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C358D46A-4247-4C97-8BF8-5B3C1047696C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C358D46A-4247-4C97-8BF8-5B3C1047696C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C358D46A-4247-4C97-8BF8-5B3C1047696C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C358D46A-4247-4C97-8BF8-5B3C1047696C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C358D46A-4247-4C97-8BF8-5B3C1047696C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{34D7D3F9-5AAA-41D7-952D-AF1AD6F59EF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34D7D3F9-5AAA-41D7-952D-AF1AD6F59EF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34D7D3F9-5AAA-41D7-952D-AF1AD6F59EF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34D7D3F9-5AAA-41D7-952D-AF1AD6F59EF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27B7311A-DD78-48D5-AA5C-BFFCC5CA5FA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27B7311A-DD78-48D5-AA5C-BFFCC5CA5FA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27B7311A-DD78-48D5-AA5C-BFFCC5CA5FA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27B7311A-DD78-48D5-AA5C-BFFCC5CA5FA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
