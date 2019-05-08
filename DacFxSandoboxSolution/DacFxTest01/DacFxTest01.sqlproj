@@ -67,4 +67,7 @@
     <Build Include="Security\test_schema.sql" />
     <Build Include="Security\Permissions.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="DacFxTest01.publish.xml" />
+  </ItemGroup>
 </Project>

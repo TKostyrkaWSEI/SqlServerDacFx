@@ -11,7 +11,8 @@ namespace DacFxCApp_01
         static void Main(string[] args)
         {
             //Test01();
-            Test02();
+            //Test02();
+            Test03();
 
             Console.WriteLine("-----------");
             Console.ReadKey();
@@ -48,6 +49,44 @@ namespace DacFxCApp_01
             var pk2 = DacPackage.Load(folderPath + file02);
 
             string s = t.GenerateCompareScript(pk1, pk2);
+            Console.WriteLine(s);
+        }
+
+
+        static void Test03()
+        {
+            Tester01 t = new Tester01();
+
+            string srv = @"Data Source=.;Integrated Security=SSPI;Encrypt=False;";
+            string db1 = @"DacFxTest01";
+            string db2 = @"DacFxTest03";
+
+
+            DacServices dacSrv = new DacServices($"{srv}"); // , Initial Catalog = { db2 };
+
+            string file01 = t.CreateDacPac(srv, db1);
+            var pk1 = DacPackage.Load(file01);
+
+            DacDeployOptions options = new DacDeployOptions
+            {
+                //AdditionalDeploymentContributors = "FilterContributor.SqlFilter",
+                //AdditionalDeploymentContributorArguments = "FilterName=SchemaBasedFilter; Schema1=filterTest",
+                ExcludeObjectTypes = new ObjectType[]
+                {
+                    ObjectType.Users,
+                    ObjectType.RoleMembership,
+                    //ObjectType.Permissions,
+                    ObjectType.Logins,
+                    ObjectType.Certificates,
+                    ObjectType.SymmetricKeys
+                },
+                //DropStatisticsNotInSource = false,
+                DropExtendedPropertiesNotInSource = false,
+                ScriptDatabaseOptions = false,
+                DropObjectsNotInSource = true
+            };
+
+            var s = dacSrv.GenerateDeployScript(pk1, db2, options);
             Console.WriteLine(s);
         }
     }

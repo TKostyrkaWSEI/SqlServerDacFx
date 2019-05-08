@@ -12,12 +12,15 @@ namespace DacFxCApp_01.Testers
 
         public string CreateDacPac(
             string srv,
-            string dbs
+            string dbs,
+            string filename = null
             )
         {
+            filename = filename ?? Path.GetRandomFileName();
+
             DacServices dacSrv = new DacServices(srv);
             string folderPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\DacPacFiles\"));
-            string filePath = Path.Combine(folderPath, Path.GetRandomFileName() + ".dacpac");
+            string filePath = Path.Combine(folderPath, filename + ".dacpac");
 
             Directory.CreateDirectory(folderPath);
             dacSrv.Extract(filePath, dbs, "AppName", new Version(1, 0));
