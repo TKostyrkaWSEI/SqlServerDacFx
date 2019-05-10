@@ -28,3 +28,27 @@
     [UpdateDate]            DATETIME      NULL
 );
 
+
+
+
+
+
+
+
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[DimEmployee] TO [SampleRole00_modified]
+    AS [dbo];
+
+
+GO
+GRANT INSERT
+    ON OBJECT::[dbo].[DimEmployee] TO [SampleRole00_modified]
+    AS [dbo];
+
+
+GO
+GRANT DELETE
+    ON OBJECT::[dbo].[DimEmployee] TO [SampleRole00_modified]
+    AS [dbo];
+

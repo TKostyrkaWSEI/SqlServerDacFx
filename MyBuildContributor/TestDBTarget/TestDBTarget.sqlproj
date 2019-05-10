@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>TestDBEmpty</Name>
+    <Name>TestDBTarget</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{eece70b5-8c59-429d-bac5-dc0ee2d475d9}</ProjectGuid>
@@ -74,5 +74,10 @@
     <Build Include="sandbox\Tables\dummytable04.sql" />
     <Build Include="sandbox\Tables\dummytable03.sql" />
     <Build Include="dbo\Tables\DimAccount.sql" />
+    <Build Include="Security\SampleRole01_deleted.sql" />
+    <Build Include="Security\SampleRole00_modified.sql" />
+    <Build Include="Security\sys_xtomp.sql" />
+    <Build Include="Security\sys_apt.sql" />
+    <Build Include="Security\sys_ancd.sql" />
   </ItemGroup>
 </Project>

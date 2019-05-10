@@ -15,3 +15,27 @@
     CONSTRAINT [PK_DimAccount_AccountKey] PRIMARY KEY CLUSTERED ([AccountKey] ASC)
 );
 
+
+
+
+
+
+
+
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[DimAccount] TO [SampleRole00_modified]
+    AS [dbo];
+
+
+GO
+GRANT INSERT
+    ON OBJECT::[dbo].[DimAccount] TO [SampleRole00_modified]
+    AS [dbo];
+
+
+GO
+GRANT DELETE
+    ON OBJECT::[dbo].[DimAccount] TO [SampleRole00_modified]
+    AS [dbo];
+

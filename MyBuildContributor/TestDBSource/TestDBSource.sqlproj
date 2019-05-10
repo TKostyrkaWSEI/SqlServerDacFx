@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>TestDB</Name>
+    <Name>TestDBSource</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{daf74ae5-af70-4056-8c57-6c05eb93529f}</ProjectGuid>
@@ -76,5 +76,10 @@
     <Build Include="dbo\Tables\DimAccount.sql" />
     <Build Include="dbo\Tables\DimEmployee.sql" />
     <Build Include="dbo\Tables\DimCustomer.sql" />
+    <Build Include="Security\SampleRole00_modified.sql" />
+    <Build Include="Security\SampleRole02_new.sql" />
+    <Build Include="Security\sys_xsewk.sql" />
+    <Build Include="Security\sys_apt.sql" />
+    <Build Include="Security\sys_ancd.sql" />
   </ItemGroup>
 </Project>
