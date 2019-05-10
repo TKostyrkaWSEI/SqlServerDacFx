@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
-
+using System.Text.RegularExpressions;
 using Microsoft.SqlServer.Dac.Deployment;
 using Microsoft.SqlServer.Dac.Model;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
@@ -15,7 +15,6 @@ namespace TestContributors
     {
         protected override void OnExecute(DeploymentPlanContributorContext context)
         {
-            // Obtain the first step in the Plan from the provided context  
             DeploymentStep nextStep = context.PlanHandle.Head;
 
             while (nextStep != null)
@@ -23,61 +22,79 @@ namespace TestContributors
                 DeploymentStep currentStep = nextStep;
                 nextStep = currentStep.Next;
 
-                //Debug.WriteLine(currentStep.GetType());
+                //Debug.WriteLine($"{currentStep.GetType()}");
 
-                if (currentStep is DropElementStep)
+                if (currentStep is DeploymentScriptStep)
+                {
+                    DeploymentScriptStep d = currentStep as DeploymentScriptStep;
+
+                    Regex rx = new Regex(@"\[sandbox\]");   //[\n\r]*is being dropped.  Deployment will halt if the table contains data.");
+                    if (rx.IsMatch(d.GenerateTSQL()[0]))
+                    {
+                        base.Remove(context.PlanHandle, currentStep);
+                        continue;
+                    }
+                }
+
+                if (currentStep is CreateElementStep)
                 {
                     DeploymentScriptDomStep domStep = currentStep as DeploymentScriptDomStep;
 
                     TSqlScript script = domStep.Script as TSqlScript;
                     TSqlStatement t = script.Batches[0].Statements[0];
 
-                    DropObjectsStatement o = (DropObjectsStatement)t;
-                    IList<SchemaObjectName> ol = o.Objects;
-                    SchemaObjectName ol1 = ol[0];
-                    
-                    Sql140ScriptGenerator s = new Sql140ScriptGenerator();
-                    s.GenerateScript(t, out string ts);
+                    if (t is CreateTableStatement o)
+                    {
+                        SchemaObjectName ol = o.SchemaObjectName;
+                        string ol1 = ol.SchemaIdentifier.Value;
 
-                    Debug.WriteLine(domStep.IsMessageInFirstBatch);
-                    Debug.WriteLine(domStep.Message);
-                    Debug.WriteLine(ts);
-                    Debug.WriteLine(ol1.SchemaIdentifier.Value);
-                    Debug.WriteLine(ol1.BaseIdentifier.Value);
+                        if (ol1 == "sandbox" || ol1 == "unittests")
+                        {
+                            base.Remove(context.PlanHandle, currentStep);
+                            continue;
+                        }
+                    }
 
-                    continue;
+                    //  Sql140ScriptGenerator s = new Sql140ScriptGenerator();
+                    //  s.GenerateScript(t, out string ts);
+                    //  Debug.WriteLine($"{t.GetType()}: {ts}");
+                    //  DropChildObjectsStatement
+                    //  DropStatisticsStatement
                 }
-                else
+
+                if (currentStep is DropElementStep)
                 {
+                    DeploymentScriptDomStep domStep = currentStep as DeploymentScriptDomStep;
+                    TSqlScript script = domStep.Script as TSqlScript;
+                    TSqlStatement t = script.Batches[0].Statements[0];
+
+                    //Debug.WriteLine($"{currentStep.GetType()}: {t.GetType()}");
+
+                    if (t is DropStatisticsStatement)
+                    {
+                        base.Remove(context.PlanHandle, currentStep);
+                        continue;
+                    }
+
+                    if (t is DropObjectsStatement)
+                    {
+                        DropObjectsStatement o = (DropObjectsStatement)t;
+                        IList<SchemaObjectName> ol = o.Objects;
+                        string ol1 = ol[0].SchemaIdentifier.Value;
+
+                        if (ol1 == "sandbox" || ol1 == "unittests")
+                        {
+                            base.Remove(context.PlanHandle, currentStep);
+                            continue;
+                        }
+                    }
+
+                    //  Sql140ScriptGenerator s = new Sql140ScriptGenerator();
+                    //  s.GenerateScript(t, out string ts);
+                    //  Debug.WriteLine($"{t.GetType()}: {ts}");
+                    //  DropChildObjectsStatement
+                    //  DropStatisticsStatement
                 }
-
-                //if (currentStep is DeploymentScriptDomStep)
-                //{
-                //    base.Remove(context.PlanHandle, currentStep);
-                //    continue;
-                //}
-
-                //    if (currentStep is BeginPostDeploymentScriptStep)
-                //    {
-                //        break;
-                //    }
-                //    if (beforePreDeploy == null)
-                //    {
-                //        continue;
-                //    }
-
-                //    DeploymentScriptDomStep domStep = currentStep as DeploymentScriptDomStep;
-                //    if (domStep == null)
-                //    {
-                //        continue;
-                //    }
-
-                //    TSqlScript script = domStep.Script as TSqlScript;
-                //    if (script == null)
-                //    {
-                //        continue;
-                //    }
-
             }
         }
     }

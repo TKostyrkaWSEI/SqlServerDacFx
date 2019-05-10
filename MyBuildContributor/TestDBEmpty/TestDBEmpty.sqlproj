@@ -73,5 +73,6 @@
     <Build Include="Security\sandbox.sql" />
     <Build Include="sandbox\Tables\dummytable04.sql" />
     <Build Include="sandbox\Tables\dummytable03.sql" />
+    <Build Include="dbo\Tables\DimAccount.sql" />
   </ItemGroup>
 </Project>

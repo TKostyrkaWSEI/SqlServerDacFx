@@ -24,20 +24,18 @@ namespace TestCshApp
 
             DacDeployOptions options = new DacDeployOptions
             {
-                //AdditionalDeploymentContributors = "MyOtherDeploymentContributor.RestartableScriptContributor",
                 AdditionalDeploymentContributors = "TestContributors.MyFirstTestContributor",
-                //ExcludeObjectTypes = new ObjectType[]
-                //{
-                //    ObjectType.StoredProcedures,
-                //    ObjectType.Views,
-                //    ObjectType.Users,
-                //    ObjectType.Logins,
-                //    ObjectType.RoleMembership
-                //},
+                ExcludeObjectTypes = new ObjectType[]
+                {
+                    ObjectType.StoredProcedures,
+                    ObjectType.Views,
+                    ObjectType.Users,
+                    ObjectType.Logins,
+                    ObjectType.RoleMembership
+                },
                 DropObjectsNotInSource = true
             };
 
-            //string s = DacServices.GenerateCreateScript(pk01, "name", options);
             string s = DacServices.GenerateDeployScript(pk01, pk02, "name", options);
             Console.WriteLine(s);
             Console.ReadLine();

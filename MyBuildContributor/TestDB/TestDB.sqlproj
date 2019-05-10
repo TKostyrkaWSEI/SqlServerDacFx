@@ -73,5 +73,8 @@
     <Build Include="unittests\Stored Procedures\test01.sql" />
     <Build Include="Security\unittests.sql" />
     <Build Include="Security\sandbox.sql" />
+    <Build Include="dbo\Tables\DimAccount.sql" />
+    <Build Include="dbo\Tables\DimEmployee.sql" />
+    <Build Include="dbo\Tables\DimCustomer.sql" />
   </ItemGroup>
 </Project>
