@@ -12,7 +12,6 @@ namespace TestCshApp
     {
         static void Main(string[] args)
         {
-
             string folderPath01 = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\TestDBSource\bin\Debug\"));
             string folderPath02 = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\TestDBTarget\bin\Debug\"));
 
@@ -24,13 +23,15 @@ namespace TestCshApp
 
             DacDeployOptions options = new DacDeployOptions
             {
-                //AdditionalDeploymentContributors = "TestContributors.MyFirstTestContributor",
-                DropObjectsNotInSource = true,
+                AdditionalDeploymentContributors = "TestContributors.MyFirstTestContributor",
+
                 ExcludeObjectTypes = new ObjectType[]
                 {
                     ObjectType.Users,
                     ObjectType.RoleMembership
                 },
+
+                DropObjectsNotInSource = true,
                 DoNotDropObjectTypes = new ObjectType[]
                 {
                     ObjectType.DatabaseRoles
