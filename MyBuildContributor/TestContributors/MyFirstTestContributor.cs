@@ -95,6 +95,26 @@ namespace TestContributors
                     //  DropChildObjectsStatement
                     //  DropStatisticsStatement
                 }
+
+                //if (currentStep is AlterElementStep)
+                //{
+                //    DeploymentScriptDomStep domStep = currentStep as DeploymentScriptDomStep;
+                //    TSqlScript script = domStep.Script as TSqlScript;
+                //    TSqlStatement t = script.Batches[0].Statements[0];
+
+                //    if (t is AlterProcedureStatement)
+                //    {
+                //        AlterProcedureStatement o = (AlterProcedureStatement)t;
+                //        SchemaObjectName ol = o.Options.sch
+                //        string ol1 = ol.SchemaIdentifier.Value;
+
+                //        if (ol1 == "sandbox" || ol1 == "unittests")
+                //        {
+                //            base.Remove(context.PlanHandle, currentStep);
+                //            continue;
+                //        }
+                //    }
+                //}
             }
         }
     }

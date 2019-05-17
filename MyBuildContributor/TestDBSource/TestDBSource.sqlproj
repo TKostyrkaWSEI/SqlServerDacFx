@@ -64,6 +64,7 @@
     <Folder Include="unittests\" />
     <Folder Include="unittests\Stored Procedures\" />
     <Folder Include="Security\" />
+    <Folder Include="schcompare" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\TestTable01.sql" />
@@ -81,5 +82,8 @@
     <Build Include="Security\sys_xsewk.sql" />
     <Build Include="Security\sys_apt.sql" />
     <Build Include="Security\sys_ancd.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="schcompare\SqlSchemaCompare.scmp" />
   </ItemGroup>
 </Project>

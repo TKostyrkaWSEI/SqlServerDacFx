@@ -17,10 +17,12 @@ namespace TestCshApp
 
             string file01 = "TestDBSource.dacpac";
             string file02 = "TestDBTarget.dacpac";
-
+            
+            // load dacpacs
             DacPackage pk01 = DacPackage.Load(folderPath01 + file01);
             DacPackage pk02 = DacPackage.Load(folderPath02 + file02);
 
+            // configure (same as .publish xml)
             DacDeployOptions options = new DacDeployOptions
             {
                 AdditionalDeploymentContributors = "TestContributors.MyFirstTestContributor",
@@ -38,6 +40,7 @@ namespace TestCshApp
                 }
             };
 
+            // compare
             string s = DacServices.GenerateDeployScript(pk01, pk02, "name", options);
             Console.WriteLine(s);
             Console.ReadLine();
