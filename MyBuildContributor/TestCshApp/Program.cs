@@ -25,7 +25,8 @@ namespace TestCshApp
             // configure (same as .publish xml)
             DacDeployOptions options = new DacDeployOptions
             {
-                AdditionalDeploymentContributors = "TestContributors.MyFirstTestContributor",
+                //AdditionalDeploymentContributors = "TestContributors.MyFirstTestContributor",
+                AdditionalDeploymentContributors = "TestContributors.DropToTxtContributor",
 
                 ExcludeObjectTypes = new ObjectType[]
                 {
