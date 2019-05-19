@@ -1,0 +1,2 @@
+﻿CREATE USER [sys\xtomp] FOR LOGIN [SYS\XTOMP];
+
