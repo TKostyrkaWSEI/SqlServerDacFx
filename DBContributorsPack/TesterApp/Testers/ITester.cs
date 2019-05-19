@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ContributorsLib
+namespace TesterApp.Testers
 {
-    public class Class1
+    interface ITester
     {
+        void Run();
     }
 }
