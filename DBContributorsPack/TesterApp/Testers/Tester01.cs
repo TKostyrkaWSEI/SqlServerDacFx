@@ -21,8 +21,7 @@ namespace TesterApp.Testers
             // configure (same as .publish xml)
             DacDeployOptions options = new DacDeployOptions
             {
-                //AdditionalDeploymentContributors = "TestContributors.MyFirstTestContributor",
-                AdditionalDeploymentContributors = "TestContributors.DropToTxtContributor",
+                AdditionalDeploymentContributors = "DBContributorsPack.DropToTxtContributor",
 
                 ExcludeObjectTypes = new ObjectType[]
                 {
